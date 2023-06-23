@@ -83,7 +83,6 @@ public class ThreadDemo {
             }
         }.start();
 
-
         new Thread(){
             @Override
             public void run() {
@@ -111,7 +110,6 @@ class MyThread1 extends Thread{
 
     }
 }
-
 
 class MyThread2 extends Thread{
     @Override
@@ -165,6 +163,8 @@ class MyThread2 extends Thread{
 class HelloThread extends Thread{
     @Override
     public void run() {
+        //this相當於Thread.currentThread()
+
         for (int i = 0; i < 100; i++) {
             if(i % 2 == 0){
 
@@ -223,6 +223,147 @@ public class ThreadMethodTest {
 
 //        System.out.println(h1.isAlive());
 
+    }
+}
+```
+
+```
+/**
+ *
+ * 例子：創建三個窗口賣票，總票數為100張.使用繼承Thread類的方式
+ *
+ * 存在線程的安全問題，待解決。
+ *
+ * @author shkstart
+ * @create 2019-02-13 下午 4:20
+ */
+class Window extends Thread{
+    private static int ticket = 100;
+
+    @Override
+    public void run() {
+        while(true){
+            if(ticket > 0){
+                System.out.println(getName() + "：賣票，票號為：" + ticket);
+                ticket--;
+            }else{
+                break;
+            }
+        }
+    }
+}
+
+public class WindowTest {
+    public static void main(String[] args) {
+        Window t1 = new Window();
+        Window t2 = new Window();
+        Window t3 = new Window();
+
+        t1.setName("窗口1");
+        t2.setName("窗口2");
+        t3.setName("窗口3");
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+```
+
+```
+/**
+ * 創建多線程的方式二：實現Runnable接口
+ * 1. 創建一個實現了Runnable接口的類
+ * 2. 實現類去實現Runnable中的抽象方法：run()
+ * 3. 創建實現類的對象
+ * 4. 將此對象作為參數傳遞到Thread類的構造器中，創建Thread類的對象
+ * 5. 通過Thread類的對象調用start()
+ *
+ *
+ * 比較創建線程的兩種方式。
+ * 開發中：優先選擇：實現Runnable接口的方式
+ * 原因：1. 實現的方式沒有類的單繼承性的局限性
+ *      2. 實現的方式更適合來處理多個線程有共享數據的情況。
+ *
+ * 聯系：public class Thread implements Runnable
+ * 相同點：兩種方式都需要重寫run(),將線程要執行的邏輯聲明在run()中。
+ *
+ * @author shkstart
+ * @create 2019-02-13 下午 4:34
+ */
+//1. 創建一個實現了Runnable接口的類
+class MThread implements Runnable{
+
+    //2. 實現類去實現Runnable中的抽象方法：run()
+    @Override
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            if(i % 2 == 0){
+                System.out.println(Thread.currentThread().getName() + ":" + i);
+            }
+
+        }
+    }
+}
+
+public class ThreadTest1 {
+    public static void main(String[] args) {
+        //3. 創建實現類的對象
+        MThread mThread = new MThread();
+        //4. 將此對象作為參數傳遞到Thread類的構造器中，創建Thread類的對象
+        Thread t1 = new Thread(mThread);
+        t1.setName("線程1");
+        //5. 通過Thread類的對象調用start():① 啟動線程 ②調用當前線程的run()-->調用了Runnable類型的target的run()
+        t1.start();
+
+        //再啟動一個線程，遍歷100以內的偶數
+        Thread t2 = new Thread(mThread);
+        t2.setName("線程2");
+        t2.start();
+    }
+
+}
+```
+
+```
+/**
+ * 例子：創建三個窗口賣票，總票數為100張.使用實現Runnable接口的方式
+ * 存在線程的安全問題，待解決。
+ *
+ * @author shkstart
+ * @create 2019-02-13 下午 4:47
+ */
+class Window1 implements Runnable{
+    private int ticket = 100;
+
+    @Override
+    public void run() {
+        while(true){
+            if(ticket > 0){
+                System.out.println(Thread.currentThread().getName() + ":賣票，票號為：" + ticket);
+                ticket--;
+            }else{
+                break;
+            }
+        }
+    }
+}
+
+public class WindowTest1 {
+    public static void main(String[] args) {
+        Window1 w = new Window1();
+
+        Thread t1 = new Thread(w);
+        Thread t2 = new Thread(w);
+        Thread t3 = new Thread(w);
+
+        t1.setName("窗口1");
+        t2.setName("窗口2");
+        t3.setName("窗口3");
+
+        t1.start();
+        t2.start();
+        t3.start();
     }
 }
 ```
