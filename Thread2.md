@@ -275,3 +275,44 @@ public class WindowTest4 {
     }
 }
 ```
+
+```
+/**
+ * 使用同步機制將單例模式中的懶漢式改寫為線程安全的
+ *
+ * @author shkstart
+ * @create 2019-02-15 下午 2:50
+ */
+public class BankTest {
+
+}
+
+class Bank{
+    private Bank(){}
+
+    private static Bank instance = null;
+
+    public static Bank getInstance(){
+        //方式一：效率稍差
+//        synchronized (Bank.class) {
+//            if(instance == null){
+//
+//                instance = new Bank();
+//            }
+//            return instance;
+//        }
+        //方式二：效率更高
+        if(instance == null){
+
+            synchronized (Bank.class) {
+                if(instance == null){
+
+                    instance = new Bank();
+                }
+
+            }
+        }
+        return instance;
+    }
+}
+```
