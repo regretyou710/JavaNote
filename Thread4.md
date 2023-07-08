@@ -13,6 +13,9 @@
  *
  *  面試題：如何解決線程安全問題？有幾種方式
  *          同步代碼塊、同步方法、Lock鎖
+ *
+ * 如果使用繼承方式創建Thread，private ReentrantLock lock = new ReentrantLock();要注意宣告成靜態，使lock唯一
+ *
  * @author shkstart
  * @create 2019-02-15 下午 3:38
  */
