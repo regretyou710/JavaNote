@@ -18,3 +18,4 @@ interface
 內部類
 exception
 Thread
+String
