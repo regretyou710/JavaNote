@@ -19,3 +19,4 @@ interface
 exception
 Thread
 String
+Comparable
