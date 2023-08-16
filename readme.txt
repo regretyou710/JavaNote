@@ -20,3 +20,4 @@ exception
 Thread
 String
 Comparable
+Enum
