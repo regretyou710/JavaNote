@@ -21,3 +21,4 @@ Thread
 String
 Comparable
 Enum
+Collection

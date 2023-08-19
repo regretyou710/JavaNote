@@ -41,7 +41,7 @@ interface Info{
 
 //使用enum關鍵字枚舉類
 enum Season1 implements Info{
-    //1.提供當前枚舉類的對象，多個對象之間用","隔開，末尾對象";"結束
+    //1.提供當前枚舉類的對象需在enum結構一開始聲明，多個對象之間用","隔開，末尾對象";"結束
     SPRING("春天","春暖花開"){
         @Override
         public void show() {
@@ -86,8 +86,9 @@ enum Season1 implements Info{
     public String getSeasonDesc() {
         return seasonDesc;
     }
+
 //    //4.其他訴求1：提供toString()
-//
+//    //因為enum繼承於java.lang.Enum類所以toString()輸出不是地址值而是枚舉對象
 //    @Override
 //    public String toString() {
 //        return "Season1{" +
