@@ -21,4 +21,5 @@ Thread
 String
 Comparable
 Enum
+Annotation
 Collection
