@@ -1,5 +1,0 @@
-![Annotation1](./img/Annotation1.jpg)
-![Annotation2](./img/Annotation2.jpg)
-![Annotation3](./img/Annotation3.jpg)
-![Annotation4](./img/Annotation4.jpg)
-![Annotation4](./img/Annotation5.jpg)
