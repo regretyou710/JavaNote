@@ -107,7 +107,7 @@ public class CollectionTest {
         List<String> list = Arrays.asList(new String[]{"AA", "BB", "CC"});
         System.out.println(list);
 
-        List arr1 = Arrays.asList(new int[]{123, 456});
+        List arr1 = Arrays.asList(new int[]{123, 456});//整個對象看成一個元素，不進行裝箱，因為asList接收的參數是對象類型
         System.out.println(arr1.size());//1
 
         List arr2 = Arrays.asList(new Integer[]{123, 456});
