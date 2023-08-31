@@ -4,7 +4,7 @@
  *
  *
  * 面試題：Collection 和 Collections的區別？
- *
+ * Collection:實現List和Set的接口
  *
  * @author shkstart
  * @create 2019 下午 4:19
