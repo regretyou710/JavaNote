@@ -12,7 +12,7 @@
        4. 若子類沒重寫父類中的所的抽象方法，則此子類也是一個抽象類，需要使用abstract修飾       
    * 注意點:
      1. abstract不能用來修飾:屬性、構造器等結構
-     2. abstract不能用來修飾私方法、靜態方法、final的方法、final的類
+     2. <mark>abstract不能用來修飾私方法、靜態方法、final的方法、final的類</mark>
    * abstract的應用舉例:
      * 舉例一:
      * 舉例二:

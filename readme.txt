@@ -23,3 +23,4 @@ Comparable
 Enum
 Annotation
 Collection
+泛型

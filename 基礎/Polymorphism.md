@@ -69,7 +69,7 @@ class Driver{
 //		Man m3 = (Man)p3;
 		//舉例二：
 //		Person p4 = new Person();
-//		Man m4 = (Man)p4;
+//		Man m4 = (Man)p4;//以對象被創建時，類的加載角度去想
 
 		
 		//問題二：編譯通過，運行時也通過
