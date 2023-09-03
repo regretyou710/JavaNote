@@ -46,7 +46,7 @@ public class ThreadPool {
         //1. 提供指定線程數量的線程池
 
         //ThreadPoolExecutor -> AbstractExecutorService -> ExecutorService
-        //Executors.newFixedThreadPool()方法返回值使用多態的形式表現，實際返回值類型是ThreadPoolExecutor，/所以可以向下轉型
+        //Executors.newFixedThreadPool()方法返回值使用多態的形式表現，實際返回值類型是ThreadPoolExecutor，所以可以向下轉型
         ExecutorService service = Executors.newFixedThreadPool(10);//向上隱含
         ThreadPoolExecutor service1 = (ThreadPoolExecutor) service;//向下明確
 
