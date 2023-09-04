@@ -244,7 +244,7 @@ class Student extends Person {
         Object person8 = list1.get(0);
 
         System.out.println("***********************");
-        //因為List<? super Person>，其中通配符表示Person或其子類
+        //因為List<? super Person>，其中通配符表示Person或其父類
         //編譯時不能確定通配符類型，運行時才能確定
         //結論:<? super Person>表示，list1.get(0)返回的最大類型為Person根父類，最小類型為Person
         List<Person> list8 = new ArrayList<>();
@@ -276,4 +276,4 @@ class Person {
 class Man extends Person {
 }
 ```
-# 結論: <? extends T>的添加與獲取及<? super T>的添加與獲取
+# 結論:注意<? extends T>的添加與獲取及<? super T>的添加與獲取、<?>的添加與獲取
