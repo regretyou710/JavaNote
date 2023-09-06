@@ -24,3 +24,4 @@ Enum
 Annotation
 Collection
 泛型
+File
