@@ -59,4 +59,4 @@ public class CollectionTest {
 }
 ```
 
-![Collection1](../img/Collection1.jpg)
+![Collection1](../img/高級1/Collection1.jpg)

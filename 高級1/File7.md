@@ -204,5 +204,5 @@ class Account implements Serializable{
 }
 ```
 
-![File7](../img/File7.jpg)
-![File8](../img/File8.jpg)
+![File7](../img/高級1/File7.jpg)
+![File8](../img/高級1/File8.jpg)

@@ -130,10 +130,10 @@ public class StringTest {
 
 }
 ```
-![String1](../img/String1.jpg)
-![String2](../img/String2.jpg)
-![String3](../img/String3.jpg)
-![String4](../img/String4.jpg)
+![String1](../img/高級1/String1.jpg)
+![String2](../img/高級1/String2.jpg)
+![String3](../img/高級1/String3.jpg)
+![String4](../img/高級1/String4.jpg)
 
 ```
 /**

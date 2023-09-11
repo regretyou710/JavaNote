@@ -450,8 +450,8 @@ public class WindowTest1 {
   * 一種是守護線程(gc()垃圾回收線程)，一種是用戶線程(main()主線程)。用戶線程結束時守護線程也會結束。
 
 # 線程的生命週期
-![Thread1](../img/Thread1.jpg)
-![Thread2](../img/Thread2.jpg)
-![Thread3](../img/Thread3.jpg)
-![Thread4](../img/Thread4.jpg)
-![Thread5](../img/Thread5.jpg)
+![Thread1](../img/高級1/Thread1.jpg)
+![Thread2](../img/高級1/Thread2.jpg)
+![Thread3](../img/高級1/Thread3.jpg)
+![Thread4](../img/高級1/Thread4.jpg)
+![Thread5](../img/高級1/Thread5.jpg)
