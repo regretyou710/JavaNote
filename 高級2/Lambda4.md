@@ -264,7 +264,7 @@ public class StreamAPITest2 {
     //2-歸約
     @Test
     public void test3(){
-//        reduce(T identity, BinaryOperator)——可以將流中元素反覆結合起來，得到一個值。返回 T
+//        reduce(T identity, BinaryOperator)——可以將流中元素反覆結合起來，得到一個值。返回 T，identity初始值
 //        練習1：計算1-10的自然數的和
         List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
         Integer sum = list.stream().reduce(0, Integer::sum);
