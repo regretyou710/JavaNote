@@ -118,7 +118,7 @@ public class StreamAPITest1 {
         list.stream().distinct().forEach(System.out::println);
     }
 
-    //映射
+    //2-映射
     @Test
     public void test2(){
 //        map(Function f)——接收一個函數作為參數，將元素轉換成其他形式或提取信息，該函數會被應用到每個元素上，並將其映射成一個新的元素。
