@@ -1,7 +1,5 @@
+# list集合線程不安全
 ```
-/**
- * list集合線程不安全
- */
 public class ThreadDemo4 {
     public static void main(String[] args) {
         //創建ArrayList集合
