@@ -1,4 +1,4 @@
-# 線城池
+# 線程池
 ```
 //演示線程池三種常用分類
 public class ThreadPoolDemo1 {

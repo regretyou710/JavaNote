@@ -95,7 +95,7 @@ public class ThreadDemo2 {
 ```
 //第一步 創建資源類
 class ShareResource {
-    //定義標志位
+    //定義標誌位
     private int flag = 1;  // 1 AA     2 BB     3 CC
 
     //創建Lock鎖
