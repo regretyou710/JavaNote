@@ -67,7 +67,7 @@ public class ReadWriteLockDemo {
             },String.valueOf(i)).start();
         }
 
-        TimeUnit.MICROSECONDS.sleep(300);
+        TimeUnit.MICROSECONDS.sleep(300);//時間阻塞越長結果越明顯
 
         //創建線程取數據
         for (int i = 1; i <=5; i++) {
@@ -78,7 +78,7 @@ public class ReadWriteLockDemo {
         }
 
         /*
-        寫->獨佔鎖，讀->共享鎖(時間阻塞越長結果越明顯)
+        寫->獨佔鎖，讀->共享鎖
         4 正在寫操作4
         4 寫完了4
         3 正在寫操作3
