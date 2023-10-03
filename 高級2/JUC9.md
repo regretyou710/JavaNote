@@ -1,4 +1,4 @@
-# JUC輔助類SemaphoreDemo
+# JUC輔助類Semaphore
 ```
 import java.util.Random;
 import java.util.concurrent.Semaphore;

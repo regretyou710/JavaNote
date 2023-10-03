@@ -1,4 +1,4 @@
-# JUC輔助類CyclicBarrierDemo
+# JUC輔助類CyclicBarrier
 ```
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
