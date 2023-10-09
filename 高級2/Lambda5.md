@@ -163,3 +163,101 @@ public class Girl {
     }
 }
 ```
+
+```
+    public static void main(String[] args) {
+        Optional<String> optional = Optional.of("hello");
+
+
+//        if(optional.isPresent()){
+//            System.out.println(optional.get());//hello
+//        }
+
+        //推薦使用ifPresent方式
+        optional.ifPresent(System.out::println);//hello
+
+        optional = Optional.empty();
+        System.out.println(optional.orElse("world"));//world
+        System.out.println(optional.orElseGet(() -> "world"));//world
+    }
+```
+
+```
+    public static void main(String[] args) {
+        Employee emp = new Employee();
+        List<Employee> emps = Arrays.asList(new Employee("Tom"), new Employee("Mary"));
+
+//        emps = null;
+
+        Company company = new Company("java school");
+        company.setEmpList(emps);
+
+        Optional<Company> optionalEmployeeList = Optional.ofNullable(company);
+
+        //emps不為空
+        System.out.println(optionalEmployeeList.map(data -> data.getEmpList()).orElse(Collections.emptyList()));//[Employee{name='Tom'}, Employee{name='Mary'}]
+
+        //emps為空
+//        System.out.println(optionalEmployeeList.map(data -> data.getEmpList()).orElse(Collections.emptyList()));//[]
+    }
+
+class Employee {
+    private String name;
+
+    public Employee() {
+
+    }
+
+    public Employee(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}
+
+class Company {
+    private String name;
+    private List<Employee> empList;
+
+    Company(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Employee> getEmpList() {
+        return empList;
+    }
+
+    public void setEmpList(List<Employee> empList) {
+        this.empList = empList;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", empList=" + empList +
+                '}';
+    }
+}
+```
