@@ -57,3 +57,37 @@ public static void main(String[] args) {
          */
 }
 ```
+
+```
+public static void main(String[] args) {
+    //找出流中大於2的元素，然後將每個元素乘以2，然後忽略掉流中的前兩個元素，然後再取流中的前兩個元素，最後求出流中元素的總和
+    Stream<Integer> stream = Stream.iterate(1, item -> item + 2).limit(6);
+    IntStream intStream = stream.filter(item -> item > 2).mapToInt(item -> item * 2).skip(2).limit(2);//使用mapToInt是避免自動拆裝箱損失效能
+//        int sum = intStream.sum();
+//        System.out.println(sum);
+
+    IntSummaryStatistics intSummaryStatistics = intStream.summaryStatistics();
+    //求和
+    System.out.println(intSummaryStatistics.getSum());//32
+
+    //求最大值
+    System.out.println(intSummaryStatistics.getMax());//18
+
+    //求最小值
+    System.out.println(intSummaryStatistics.getMin());//14
+
+    //case:篩選後沒有元素
+    Stream<Integer> stream2 = Stream.iterate(1, item -> item + 2).limit(6);
+    intStream = stream2.filter(item -> item > 200).mapToInt(item -> item * 2).skip(2).limit(2);
+    intSummaryStatistics = intStream.summaryStatistics();
+
+    //求和
+    System.out.println(intSummaryStatistics.getSum());//0
+
+    //求最大值
+    System.out.println(intSummaryStatistics.getMax());//-2147483648
+
+    //求最小值
+    System.out.println(intSummaryStatistics.getMin());//2147483647
+}
+```
