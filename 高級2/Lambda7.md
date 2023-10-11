@@ -91,3 +91,63 @@ public static void main(String[] args) {
     System.out.println(intSummaryStatistics.getMin());//2147483647
 }
 ```
+
+# 串行流與並行流
+```
+public static void main(String[] args) {
+    List<String> list = new ArrayList<>(5000000);
+    for (int i = 0; i < 5000000; i++) {
+        list.add(UUID.randomUUID().toString());
+    }
+
+    //串行流
+//        System.out.println("開始排序");
+//        long startTime = System.nanoTime();
+//        list.stream().sorted().count();
+//        long endTime = System.nanoTime();
+//        System.out.println("排序耗時:" + TimeUnit.NANOSECONDS.toMicros(endTime - startTime) + "微秒");
+
+    //並行流
+    System.out.println("開始排序");
+    long startTime = System.nanoTime();
+    list.parallelStream().sorted().count();
+    long endTime = System.nanoTime();
+    System.out.println("排序耗時:" + TimeUnit.NANOSECONDS.toMicros(endTime - startTime) + "微秒");     
+}
+```
+
+# 流的運作
+![Lambda9.jpg](../img/高級2/Lambda9.jpg)
+![Lambda10.jpg](../img/高級2/Lambda10.jpg)
+```
+public static void main(String[] args) {
+    List<String> list = Arrays.asList("hello", "world", "hello world");
+//        list.stream().mapToInt(data -> data.length()).filter(data -> data == 5).findFirst().ifPresent(System.out::println);
+
+    list.stream().mapToInt(data -> {
+        System.out.println(data);
+        return data.length();
+    }).filter(data -> data == 5).findFirst().ifPresent(System.out::println);//hello 5
+
+    System.out.println("------");
+
+    List<String> list2 = Arrays.asList("hello!", "world", "hello world");
+    list2.stream().mapToInt(data -> {
+        System.out.println(data);
+        return data.length();
+    }).filter(data -> data == 5).findFirst().ifPresent(System.out::println);//hello! world 5
+
+    System.out.println("------");
+
+    List<String> list3 = Arrays.asList("hello!", "world!", "hello world");
+    list3.stream().mapToInt(data -> {
+        System.out.println(data);
+        return data.length();
+    }).filter(data -> data == 5).findFirst().ifPresent(System.out::println);//hello! world! hello world
+
+    /**
+    * 流的運作:
+    * 第一個元素執行完第一個操作後再執行第二個操作...，再換第二個元素執行第一個操作後再執行第二個操作...
+    */        
+}
+```
