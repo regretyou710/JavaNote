@@ -151,3 +151,148 @@ public static void main(String[] args) {
     */        
 }
 ```
+
+# 練習一 flatMap
+```
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("hello welcome", "world hello", "hello world hello", "hello welcome");
+        //list.stream().map(data -> data.split(" ")).distinct().forEach(System.out::println);
+        //[Ljava.lang.String;@71be98f5
+        //[Ljava.lang.String;@6fadae5d
+        //[Ljava.lang.String;@17f6480
+        //[Ljava.lang.String;@2d6e8792
+
+        list.stream().map(data -> data.split(" ")).flatMap(Arrays::stream).distinct().forEach(System.out::println);
+        // hello
+        // welcome
+        // world
+    }
+}
+
+```
+
+# 練習二 flatMap
+```
+public static void main(String[] args) {
+    List<String> list1 = Arrays.asList("hi", "hello", "你好");
+    List<String> list2 = Arrays.asList("Tom", "Mary", "Eason", "Judy");
+    list1.stream().flatMap(data1 ->
+            list2.stream().map(data2 -> data1 + " " + data2)
+    ).forEach(System.out::println);
+
+//        hi Tom
+//        hi Mary
+//        hi Eason
+//        hi Judy
+//        hello Tom
+//        hello Mary
+//        hello Eason
+//        hello Judy
+//        你好 Tom
+//        你好 Mary
+//        你好 Eason
+//        你好 Judy
+}
+
+public static void main(String[] args) {
+    List<String> list1 = Arrays.asList("hi", "hello", "你好");
+    List<String> list2 = Arrays.asList("Tom", "Mary", "Eason", "Judy");
+    list1.stream().map(data1 ->
+            list2.stream().map(data2 -> data1 + " " + data2)
+    ).forEach(System.out::println);
+
+//        java.util.stream.ReferencePipeline$3@17c68925
+//        java.util.stream.ReferencePipeline$3@7e0ea639
+//        java.util.stream.ReferencePipeline$3@3d24753a
+
+       /**
+         * 在內部嵌套的 `map` 操作中創建了一個 Stream 流，但並沒有實際對該流進行終結操作，所以它們只是 Stream 流的引用，而不是實際的結果。
+         * 當您使用 `forEach` 方法叠代這些 Stream 流時，它們只是 Stream 流的對象引用，而不會執行實際的操作。
+         * Stream 流的引用指的是一個指向 Stream 對象的引用，而不是 Stream 流的實際內容。在你的原始代碼中，以下部分是關鍵：
+         *
+         * ```java
+         * list1.stream().map(data1 ->
+         *     list2.stream().map(data2 -> data1 + " " + data2)
+         * ).forEach(System.out::println);
+         * ```
+         *
+         * 這里，`list1.stream()` 創建了一個 Stream 流，然後使用 `map` 操作，將 `list2.stream().map(data2 -> data1 + " " + data2)` 
+         * 作為映射函數。但是，這里的 `map` 操作僅返回一個 Stream 流的引用，而不是將每個元素實際映射到新的值上。
+         *
+         * 所以，`list2.stream().map(data2 -> data1 + " " + data2)` 返回的是一個 Stream 流對象的引用，而不是實際的結果。
+         * 當您在 `forEach` 中打印這些引用時，您會看到 `java.util.stream.ReferencePipeline$3@...` 這樣的輸出，
+         * 其中 `ReferencePipeline$3` 是 Stream 流的類名稱，`@...` 是對象的哈希碼。
+         *
+         * 為了得到實際的結果，您需要使用 `flatMap` 操作，將嵌套的 Stream 合並成一個單一的 Stream，然後才能執行實際的操作，如之前的示例所示。
+         */
+}
+```
+
+# 練習三 groupingBy
+```
+public static void main(String[] args) {
+    Student stu1 = new Student("Tom", 18, 98);
+    Student stu2 = new Student("Eason", 18, 76);
+    Student stu3 = new Student("Judy", 17, 83);
+    Student stu4 = new Student("Tom", 20, 83);
+    List<Student> list = Arrays.asList(stu1, stu2, stu3, stu4);
+
+    Map<String, List<Student>> map1 = list.stream().collect(Collectors.groupingBy(Student::getName));
+    map1.forEach((k, v) -> System.out.println(k + " " + v));
+    /**
+        * Judy [Student{name='Judy', age=17, score=83}]
+        * Tom [Student{name='Tom', age=18, score=98}, Student{name='Tom', age=20, score=83}]
+        * Eason [Student{name='Eason', age=18, score=76}]
+        */
+
+    System.out.println("------");
+
+    Map<Integer, List<Student>> map2 = list.stream().collect(Collectors.groupingBy(Student::getScore));
+    map2.forEach((k, v) -> System.out.println(k + " " + v));
+    /**
+        * 98 [Student{name='Tom', age=18, score=98}]
+        * 83 [Student{name='Judy', age=17, score=83}, Student{name='Tom', age=20, score=83}]
+        * 76 [Student{name='Eason', age=18, score=76}]
+        */
+
+    System.out.println("------");
+
+    Map<String, Long> map3 = list.stream().collect(Collectors.groupingBy(Student::getName, Collectors.counting()));
+    map3.forEach((k, v) -> System.out.println(k + " " + v + "位"));
+    /**
+        * Judy 1位
+        * Tom 2位
+        * Eason 1位
+        */
+
+    System.out.println("------");
+
+    Map<String, Double> map4 = list.stream().collect(Collectors.groupingBy(Student::getName, Collectors.averagingInt(Student::getScore)));
+    map4.forEach((k, v) -> System.out.println(k + " 平均:" + v));
+    /**
+        * Judy 平均:83.0
+        * Tom 平均:90.5
+        * Eason 平均:76.0
+        */
+}
+```
+
+# 練習四 partitioningBy
+```
+public static void main(String[] args) {
+    Student stu1 = new Student("Tom", 18, 98);
+    Student stu2 = new Student("Eason", 18, 76);
+    Student stu3 = new Student("Judy", 17, 83);
+    Student stu4 = new Student("Tom", 20, 83);
+    List<Student> list = Arrays.asList(stu1, stu2, stu3, stu4);
+
+    //分區:分組的一種變形(只會有兩種結果)
+    Map<Boolean, List<Student>> map1 = list.stream().collect(Collectors.partitioningBy(data -> data.getScore() > 80));
+    map1.forEach((k, v) -> System.out.println(k + " " + v));
+    /**
+        * false [Student{name='Eason', age=18, score=76}]
+        * true [Student{name='Tom', age=18, score=98}, Student{name='Judy', age=17, score=83}, Student{name='Tom', age=20, score=83}]
+        */
+}
+```
