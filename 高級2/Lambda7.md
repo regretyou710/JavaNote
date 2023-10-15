@@ -296,3 +296,12 @@ public static void main(String[] args) {
         */
 }
 ```
+
+# collect 收集器
+1. Collector作為collect方法的參數
+2. Collector是一個接口，它是一個可變的匯聚操作，將輸入元素累積到一個可變的結果容器中;
+它會在所有元素都處理完畢後，將累積的結果轉換為一個最終的表示(這是一個可選操作);
+它支持串行與並行兩種方式執行。	
+3. Collectors本身提供了關於Collector的常見匯聚實現，Collectors本身實際上是一個工廠。
+4. 為了確保串行與並行操作結果的等價性，Collector函數須滿足兩個條件:identity(同一性)與associativity(結合性)。
+5. a == combiner.apply(a, supplier.get()) // (List<String> list1, List<String> list2) -> {list1.addAll(list2); return list1;}
