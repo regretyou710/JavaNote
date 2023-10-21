@@ -1,4 +1,4 @@
-# 分析為模組化JAR
+# 分析未模組化JAR
 > #### 編譯專案
 > `D:\Projects\demos\zoo.legacy>javac -XDignore.symbol.file src\zoo\legacy\UnsafeBean.java`
 
