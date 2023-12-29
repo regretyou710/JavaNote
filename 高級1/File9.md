@@ -62,6 +62,7 @@ public class FilesExample {
    - `Path relativize(Path other)` 方法用於計算相對於另一個`Path`的相對路徑。
    - 當你有兩個 `Path` 對象，比如 `path1` 和 `path2`，你可以使用 `path1.relativize(path2)` 來計算從 `path1` 到 `path2` 的相對路徑。
    - 如果兩個 `Path` 對象無法相對，則將拋出 `IllegalArgumentException`。其中一個沒有根路徑拋此例外
+   - 兩者都有根路徑或都沒有根路徑都不會拋異常
 
    ```java
    Path path1 = Paths.get("/root/folder1");
