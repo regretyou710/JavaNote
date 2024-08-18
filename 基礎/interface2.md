@@ -9,8 +9,7 @@ public class SubClassTest {
 		//知識點1：接口中定義的靜態方法，只能通過接口來調用。
 		CompareA.method1();
 		//知識點2：通過實現類的對象，可以調用接口中的默認方法。
-		//如果實現類重寫了接口中的默認方法，調用時，仍然調用的是重寫以後的方法
-		//靜態只能重寫靜態，default只能重寫default，不能靜態重寫default或default重寫靜態
+		//如果實現類重寫了接口中的默認方法，調用時，仍然調用的是重寫以後的方法		
 		s.method2();
 		//知識點3：如果子類(或實現類)繼承的父類和實現的接口中聲明了同名同參數的默認方法，
 		//那麽子類在沒有重寫此方法的情況下，默認調用的是父類中的同名同參數的方法(父類方法需要public)。-->類優先原則
@@ -86,4 +85,25 @@ public class SuperClass {
 	
 }
 
+```
+
+```
+//interface extends interface:靜態能重寫靜態，default能重寫default，default可重寫靜態，靜態不能重寫default，普通抽象方法可以重寫靜態和default
+
+interface I {
+  public default void invalid() {
+  }
+
+  public static void valid() {
+  } // Can be called only using I.valid();
+
+}
+
+interface I2 extends I {
+  // public static void invalid() {
+  // } // WILL NOT COMPILE  
+
+  public default void valid() {
+  } // this is ok.
+}
 ```
